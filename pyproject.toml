@@ -1,0 +1,16 @@
+[project]
+name = "goodwe-modbus"
+version = "0.1.0"
+description = "Python library to communicate to Goodwe inverter over modbus."
+readme = "README.md"
+authors = [
+    { name = "theneweinstein", email = "theneweinstein@mail.equust.nl" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "modbus-connection>=4.12.3",
+]
+
+[build-system]
+requires = ["uv_build>=0.12.23,<0.13.0"]
+build-backend = "uv_build"
