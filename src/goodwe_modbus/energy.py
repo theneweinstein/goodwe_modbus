@@ -7,6 +7,8 @@ from modbus_connection.model import Component, uint32, gauge
 class EnergyTotals(Component):
     """Daily and lifetime energy counters"""
 
+    max_span = 2
+
     daily_energy = gauge(566, 0.1, signed=False, unit="kWh")
     """Daily energy in kWh."""
 

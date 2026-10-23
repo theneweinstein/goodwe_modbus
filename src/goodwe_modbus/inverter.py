@@ -14,6 +14,8 @@ from .faults import FAULTS_BY_ID, Fault
 class InverterState(Component):
     """Inverter state, identity and on-grid output."""
 
+    max_span = 2
+
     system_state = enum(564, SystemState, signed = False)
     fault = flags(544, Fault1, count=2, signed = False)
     generation_time_total = uint32(548, unit = "h")
@@ -31,6 +33,8 @@ class InverterState(Component):
 class Identity(Component):
     """Inverter identity."""
 
+    #max_span = 8
+
     type = string(528, 5)
     """Inverter type """
     serial = string(512,8)
@@ -38,6 +42,8 @@ class Identity(Component):
 
 class GridOutput(Component):
     """Inverter grid output."""
+
+    max_span = 2
 
     voltage_l1 = gauge(554, 0.1, unit="V")
     voltage_l2 = gauge(555, 0.1, unit="V")

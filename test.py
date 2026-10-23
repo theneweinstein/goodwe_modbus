@@ -22,7 +22,9 @@ async def main() -> None:
         print("Faults:", device.state.fault)
         print("Faults:", device.state.active_faults)
 
-        await device.powercontrol.async_set_active_power_export_limit(100)
+        #await device.powercontrol.async_set_active_power_export_limit(100)
+    except:
+        await connection.close()
     finally:
         await connection.close()
 

@@ -1,4 +1,4 @@
-from .device import GoodweInverter
+from .device import GoodweInverter, ALL
 from .pv import PvStrings
 from .inverter import InverterState, Identity, GridOutput
 from .energy import EnergyTotals
@@ -12,4 +12,5 @@ __all__ = [
     "PvStrings", 
     "EnergyTotals", 
     "ActivePowerControl"
+    "ALL"
 ]
