@@ -16,28 +16,35 @@ class InverterState(Component):
 
     max_span = 2
 
-    system_state = enum(564, SystemState, signed = False)
-    fault = flags(544, Fault1, count=2, signed = False)
-    generation_time_total = uint32(548, unit = "h")
-    inverter_temperature = gauge(565, 0.1, signed = False, unit = "°C")
+    system_state = enum(564, SystemState, signed=False)
+    fault = flags(544, Fault1, count=2, signed=False)
+    generation_time_total = uint32(548, unit="h")
+    inverter_temperature = gauge(565, 0.1, signed=False, unit="°C")
 
     @property
     def active_faults(self) -> frozenset[Fault]:
-        """Every fault the inverter currently reports."""
+        """Every fault the inverter currently reports.
+
+        ``Fault1`` is an ``IntFlag`` whose individual members correspond to
+        bit positions; the fault ID is the 1-based bit index.
+
+        >>> Fault1.ID001_GFCI_CHECK  # bit 0 -> fault id 1
+        <Fault1.ID001_GFCI_CHECK: 1>
+        >>> Fault1.ID007_GFCI        # bit 6 -> fault id 7
+        <Fault1.ID007_GFCI: 64>
+        """
         return frozenset(
             fault
             for member in self.fault
-            if (fault := FAULTS_BY_ID(member.value)) is not None
+            if (fault := FAULTS_BY_ID.get(member.value.bit_length())) is not None
         )
 
 class Identity(Component):
     """Inverter identity."""
 
-    #max_span = 8
-
     type = string(528, 5)
-    """Inverter type """
-    serial = string(512,8)
+    """Inverter type"""
+    serial = string(512, 8)
     """Inverter serial number."""
 
 class GridOutput(Component):
@@ -64,9 +71,10 @@ class GridOutput(Component):
     @property
     def power_l2(self) -> float:
         """Grid output power on L2 in W."""
-        return self.voltage_l2 * self.current_l2   
+        return self.voltage_l2 * self.current_l2
 
     @property
     def power_l3(self) -> float:
         """Grid output power on L3 in W."""
         return self.voltage_l3 * self.current_l3
+

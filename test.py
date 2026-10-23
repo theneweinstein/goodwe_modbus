@@ -1,6 +1,5 @@
 import asyncio
-from modbus_connection import ModbusSerialParams
-from modbus_connection.tmodbus import ModbusConnection
+from modbus_connection import ModbusConnection, ModbusSerialParams
 from goodwe_modbus import GoodweInverter
 
 
@@ -22,9 +21,7 @@ async def main() -> None:
         print("Faults:", device.state.fault)
         print("Faults:", device.state.active_faults)
 
-        #await device.powercontrol.async_set_active_power_export_limit(100)
-    except:
-        await connection.close()
+        # await device.powercontrol.async_set_active_power_export_limit(100)
     finally:
         await connection.close()
 

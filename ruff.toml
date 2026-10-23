@@ -1,0 +1,20 @@
+# Linting configuration for the goodwe-modbus library.
+# Based on Home Assistant core conventions.
+
+target-version = "py312"
+
+[lint]
+select = [
+    "ALL",
+]
+
+ignore = [
+    "ANN401",  # Dynamically typed expressions (typing.Any) are disallowed
+    "D203",    # no-blank-line-before-class (incompatible with formatter)
+    "D212",    # multi-line-summary-first-line (incompatible with formatter)
+    "COM812",  # incompatible with formatter
+    "ISC001",  # incompatible with formatter
+]
+
+[lint.mccabe]
+max-complexity = 25

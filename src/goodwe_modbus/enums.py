@@ -1,4 +1,4 @@
-"""Option maps the plugin declares, as enums."""
+"""Enum types for Goodwe inverter registers."""
 
 from __future__ import annotations
 

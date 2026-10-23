@@ -12,5 +12,5 @@ class EnergyTotals(Component):
     daily_energy = gauge(566, 0.1, signed=False, unit="kWh")
     """Daily energy in kWh."""
 
-    lifetime_energy = uint32(546, scale = 0.1, unit="kWh")
+    lifetime_energy = uint32(546, scale=0.1, unit="kWh")
     """Lifetime energy in kWh."""

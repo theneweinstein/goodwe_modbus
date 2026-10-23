@@ -5,15 +5,14 @@ from __future__ import annotations
 from modbus_connection.model import Component, gauge, repeating_group
 
 
-
 class PvString(Component):
     """A PV string, one component per MPPT tier."""
 
     max_span = 2
 
-    pv_voltage = gauge(550,0.1, stride = 1, unit="V")
+    pv_voltage = gauge(550, 0.1, stride=1, unit="V")
     """PV voltage in V."""
-    pv_current = gauge(552,0.1, stride = 1, unit="A")
+    pv_current = gauge(552, 0.1, stride=1, unit="A")
     """PV current in A."""
 
     @property
@@ -26,4 +25,4 @@ class PvStrings(Component):
 
     max_span = 1
 
-    strings = repeating_group(2, PvString, stride = 1)
+    strings = repeating_group(2, PvString, stride=1)
